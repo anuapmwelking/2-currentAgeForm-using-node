@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignUp Form - MongoDB</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <form action="main.html" onsubmit="return validation()" method="POST">
+        <label for="name">Enter name </label>
+        <input type="text" name="name" id="name" />
+        <br />
+        <br />
+        <label for="email">Enter email </label>
+        <input type="email" name="email" id="email " />
+        <br /><br />
+        <label for="dob">Enter DOB </label>
+        <input type="date" name="dob" id="dob" />
+        <br />
+        <br />
+        <label for="address">Enter Address </label>
+        <input type="text" name="address" id="address" />
+        <br />
+        <br />
+        <label for="number">Enter phone number </label>
+        <input type="number" name="number" id="number" /> <br /><br />
+        <label for="schoolName">Enter School Name </label>
+        <input type="text" name="schoolName" id="schoolName" />
+        <br />
+        <br />
+        <label for="age">Enter Age </label>
+        <input type="number" name="age" id="age" />
+        <br />
+        <br />
+        <input type="submit" name="" id="submitBtn" />
+      </form>
+    </div>
+  </body>
+  <script>
+    function validation() {
+      let name = document.getElementById("name");
+      let email = document.getElementById("email");
+      let dob = document.getElementById("dob");
+      let address = document.getElementById("address");
+      let number = document.getElementById("number");
+      let schoolName = document.getElementById("schoolName");
+      let age = document.getElementById("age");
+      let submitBtn = document.getElementById("submitBtn");
+      if (number.value.length < 10 || number.value.length > 10) {
+        alert("Phone Number can't be less than 10 or greater than 10");
+        return false;
+      }
+      //   calculateAge();
+      //   // return false;
+      // }
+      // function calculateAge() {
+      console.log("caluclate age called");
+
+      let currentYear = new Date().getFullYear();
+      let userDate = new Date(dob.value);
+      let userFullYear = userDate.getFullYear();
+      console.log(currentYear, userFullYear, userDate);
+
+      if (userFullYear < 2008) {
+        console.log("Year can't less than 2008 ");
+        // alert("Year can't less than 2008 ");
+        // console.log(a);
+
+        document.getElementById("date").value = "";
+        // calculateAge();
+        return false;
+      } else {
+        if (
+          currentYear - userFullYear >= 12 &&
+          currentYear - userFullYear <= 15
+        ) {
+          console.log("belong to user group of 12 and 15");
+        }
+        if (
+          currentYear - userFullYear >= 9 &&
+          currentYear - userFullYear <= 12
+        ) {
+          console.log("belong to age group of 9 to 12");
+        }
+        if (
+          currentYear - userFullYear >= 3 &&
+          currentYear - userFullYear <= 6
+        ) {
+          console.log("belong to age group of 3 to 6");
+        }
+        // console.log(currentYear)
+        randomRegistrationNumber();
+        return saveDataFunc();
+      }
+      function randomRegistrationNumber() {
+        const random = [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          "A",
+          "B",
+          "C",
+          "D",
+          "E",
+          "F",
+        ];
+        function getRandomNumber() {
+          return Math.floor(Math.random() * random.length);
+        }
+        let name = "ROTARY";
+        for (let i = 0; i < 6; i++) {
+          name += random[getRandomNumber()];
+        }
+        console.log(name);
+      }
+      let resultArr = [];
+      function saveDataFunc() {
+        resultArr.push(name.value);
+        resultArr.push(number.value);
+        resultArr.push(email.value);
+        resultArr.push(date.value);
+        resultArr.push(schoolName.value);
+        console.log(resultArr);
+        name.value = "";
+        number.value = "";
+        email.value = "";
+        date.value = "";
+        schoolName.value = "";
+      }
+    }
+  </script>
+</html>
